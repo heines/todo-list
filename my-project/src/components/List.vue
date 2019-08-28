@@ -5,7 +5,7 @@
     div(@click="addContent") add
     ul(v-for="(item, index) in items")
       div.v-ul-list
-        div.v-ul-check(@click="checkContent(index)")
+        CheckRound
         ListContent(
           :item="item"
           )
@@ -14,16 +14,19 @@
 
 <script>
 import ListContent from './ListContent';
+import CheckRound from './CheckRound';
 export default {
   name: 'List',
   data () {
     return {
       items: ['test', 'test2'],
       newContent: '',
+      checkedList: {},
     }
   },
   components: {
     ListContent,
+    CheckRound,
   },
   methods: {
     addContent: function() {
@@ -34,9 +37,6 @@ export default {
     deleteContent: function(index) {
       this.items.splice(index, 1);
     },
-    checkContent: function(index) {
-
-    },
   },
 }
 </script>
@@ -46,9 +46,6 @@ export default {
   .v-ul {
     &-list {
       display: flex;
-    }
-    &-check {
-      
     }
   }
 </style>
