@@ -31,6 +31,9 @@ export default {
   },
   created: function() {
     this.items = JSON.parse(localStorage.getItem("items"));
+    if(!this.items) {
+      this.items = [];
+    }
   },
   methods: {
     addContent: function() {
