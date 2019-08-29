@@ -1,0 +1,14 @@
+.u-ff {
+  &-ja-mincho {}
+  &-en {}
+  &-en-serif {}
+  &-ja-gothic {
+    font-family: $font-ja;
+  }
+  &-head {
+    font-family: "big-caslon-fb",serif;
+  }
+  &-en {
+    font-family: "effra", $font-ja;
+  }
+}

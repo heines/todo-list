@@ -1,15 +1,16 @@
 <template lang="pug">
   div
-    input(v-model="newContent")
-    div new ? {{ newContent }}
-    div(@click="addContent") add
+    div.v-input
+      input(v-model="newContent")
+      div.v-add(@click="addContent") add
     ul(v-for="(item, index) in items")
-      div.v-ul-list
-        CheckRound
-        ListContent(
-          :item="item"
-          )
-        div(@click="deleteContent(index)") delete
+      div.v-ul__list
+        div.v-ul__list-check
+          CheckRound
+          ListContent(
+            :item="item"
+            )
+        div.v-delete(@click="deleteContent" :index="index") delete
 </template>
 
 <script>
@@ -19,7 +20,7 @@ export default {
   name: 'List',
   data () {
     return {
-      items: ['test', 'test2'],
+      items: [],
       newContent: '',
       checkedList: {},
     }
@@ -28,14 +29,22 @@ export default {
     ListContent,
     CheckRound,
   },
+  created: function() {
+    this.items = JSON.parse(localStorage.getItem("items"));
+  },
   methods: {
     addContent: function() {
       if(this.newContent !== '') {
         this.items.push(this.newContent);
+        this.setLocalStrage();
       }
     },
     deleteContent: function(index) {
       this.items.splice(index, 1);
+      this.setLocalStrage();
+    },
+    setLocalStrage: function() {
+      localStorage.setItem('items', JSON.stringify(this.items));
     },
   },
 }
@@ -43,9 +52,24 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+  .v-input {
+    display: flex;
+    margin-left: 1em;
+  }
   .v-ul {
-    &-list {
+    &__list {
       display: flex;
+      width: 500px;
+      justify-content: space-between;
+      &-check {
+        display: flex;
+      }
     }
+  }
+  .v-delete {
+    cursor: pointer;
+  }
+  .v-add {
+    cursor: pointer;
   }
 </style>

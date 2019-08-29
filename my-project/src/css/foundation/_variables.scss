@@ -1,0 +1,30 @@
+$color-facebook: #305097;
+$color-twitter: #00aced;
+$color-hatena: #00a4de;
+$color-googleplus: #db4e3f;
+$color-pocket: #ef4056;
+
+$color-key: rgb(43, 82, 136);
+$color-accent: rgb(43, 56, 83);
+$color-text: rgb(94, 90, 86);
+$color-delete: rgb(207, 205, 207);
+$color-base: rgb(251, 251, 254);
+
+//   font-family: 'effra';
+//   font-weight: 400;
+//   src:
+//     url('../font/xxx.ttf') format('truetype'),
+//     url('../font/xxx.woff') format('woff');
+// }
+
+$font-ja: "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+$font-kakugo: "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック体", "Yu Gothic", YuGothic, "メイリオ", Meiryo, sans-serif;
+$font-ja-mincho: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "メイリオ", Meiryo, serif;
+
+$max-width: 1160px;
+$min-width: 970px;
+
+$break-point-pc-s: 1366px;
+$break-point-tablet-l: 1024px;
+$break-point-tablet-p: 768px;
+$break-point-mobile-p: 414px;
