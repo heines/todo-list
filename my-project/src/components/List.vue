@@ -1,7 +1,10 @@
 <template lang="pug">
   div
     div.v-input
-      input.v-input(v-model="newContent")
+      input.v-input(
+        v-model="newContent"
+        @keydown.enter="addContentKey"
+        )
       div.v-add(@click="addContent") add
     ul(v-for="(item, index) in items")
       div.v-ul__list
@@ -40,7 +43,6 @@ export default {
     if(!this.checked) {
       this.checked = [];
     }
-    console.log(this.checked);
   },
   methods: {
     addContent: function() {
@@ -48,6 +50,11 @@ export default {
         this.items.push(this.newContent);
         this.checked.push(false);
         this.setLocalStrage();
+      }
+    },
+    addContentKey: function(e) {
+      if(e.keyCode === 13) {
+        this.addContent();
       }
     },
     deleteContent: function(index) {
@@ -80,10 +87,19 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+  @import '../css/foundation/_mixin-utils.scss';
+  @import '../css/foundation/_variables.scss';
   .v-input {
     display: flex;
     margin-left: 1em;
     margin-right: 1em;
+    @include fontSet(20, 25, 1.2);
+    @include l-more-than-mobile {
+      width: 50%;
+    }
+    @include l-mobile {
+      width: 80%;
+    }
   }
   .v-ul {
     &__list {
