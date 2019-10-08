@@ -1,11 +1,14 @@
 <template lang="pug">
-  div.v-replace
+  .v-replace
     textarea(
       v-model="inputText"
       placeholder="変換したい文字列を入力してください"
       )
-    ButtonReplace(:clickAction="replaceText")
-      | 全角数字を半角数字に変換
+    .v-replace__button
+      ButtonReplace(:clickAction="replaceText")
+        | 全角数字を半角数字に変換
+      ButtonClear(:clickAction="clearText")
+        | Clear
     textarea(
       v-model="outputText"
       placeholder="変換後の文字列が表示されます"
@@ -14,6 +17,7 @@
 
 <script>
 import ButtonReplace from './ButtonReplace';
+import ButtonClear from './ButtonClear';
 export default {
   name: 'ReplaceText',
   data () {
@@ -24,13 +28,21 @@ export default {
   },
   components: {
     ButtonReplace,
+    ButtonClear,
   },
   methods: {
     replaceText: function() {
       this.outputText = this.inputText.replace(/[０-９]/g, (s) => {
         return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
       });
-    }
+    },
+    clearText: function() {
+      this.inputText = '';
+      this.outputText = '';
+    },
+    clickMethod: function() {
+      console.log("copy!");
+    },
   }
 }
 </script>
@@ -40,23 +52,31 @@ export default {
   @import '../css/foundation/_variables.scss';
   .v-replace {
     display: flex;
+    justify-content: center;
     align-items: center;
-    @include l-mobile {
+    @include l-tablet-and-mobile {
       flex-direction: column;
     }
     textarea {
       height: 50vh;
-      width: 40%;
+      min-width: 35%;
       display: block;
       font-size: 20px;
       padding: 10px;
       box-sizing: border-box;
-      @include l-mobile {
+      @include l-tablet-and-mobile {
         flex-direction: column;
         height: 30vh;
         width: 90%;
         margin-top: 20px;
         margin-bottom: 20px;
+      }
+    }
+    &__button {
+      display: flex;
+      flex-direction: column;
+      @include l-tablet-and-mobile {
+        flex-direction: row;
       }
     }
   }
